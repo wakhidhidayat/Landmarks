@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct LandmarkList: View {
+    @EnvironmentObject var modelData: ModelData
     @State private var showFavoritesOnly = false
     
     var filterLandmarks: [Landmark] {
-        landmarks.filter { landmark in
+        modelData.landmarks.filter { landmark in
             (!showFavoritesOnly || landmark.isFavorite)
         }
     }
@@ -28,8 +29,8 @@ struct LandmarkList: View {
                         LandmarkRow(landmark: landmark)
                     }
                 }
-                .navigationTitle("Landmarks")
             }
+            .navigationTitle("Landmarks")
         }
     }
 }
